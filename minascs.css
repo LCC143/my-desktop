@@ -1,0 +1,23 @@
+.cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #999;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    font-size: 12px;
+  }
+  
+  .hidden {
+    background-color: #ccc;
+    cursor: pointer;
+  }
+  
+  .mine {
+    background-color: red;
+  }
+  
+  .flagged {
+    background-color: yellow;
+  }
+  
