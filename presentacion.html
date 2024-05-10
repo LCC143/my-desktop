@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="epicon.ico" type="image/x-icon">
+<title>La Alfabetizacion Digital</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif; /*UNDERTALE REFERENCIA,perdon*/
+        overflow: hidden;
+        background: url('bg.png');
+        background-repeat: repeat;
+        animation: moveBackground 10s linear infinite;
+    }
+
+    #presentation-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        border-radius: 100px;
+        border: 5px solid black; 
+        width: 950px; /*ancho*/
+        height: 500px; /*alto*/
+    }
+
+    .slide {
+        display: none;
+        position: relative;
+        text-align: center;
+        padding: 20px; 
+        animation: fadeInOut 1s ease-in-out forwards; 
+    }
+
+    .slide img {
+        position: absolute; 
+    }
+
+    .huella {
+        width: 300px; /* anchura epica */
+        height: 200px; /*altura */
+        top: 80px; /* (eje Y)n */
+        left: 330px; /*  (eje X)  */
+        text-align: center;
+    }
+
+    .garcias {
+        width: 700px; /* anchura epica */
+        height: 400px; /*altura */
+        top: 0px; /* (eje Y)n */
+        left: 130px; /*  (eje X)  */
+        text-align: center;
+        border-radius: 100px;
+    }
+
+    .alfa2 {
+        width: 400px; /* anchura epica */
+        height: 250px; /*altura */
+        top: 70px; /* (eje Y)n */
+        left: 285px; /*  (eje X)  */
+
+    }
+
+    .infox {
+        width: 400px; /* anchura epica */
+        height: 250px; /*altura */
+        top: 70px; /* (eje Y)n */
+        left: 5px; /*  (eje X)  */
+        border-radius: 100px;
+
+    }
+
+    .sobrein {
+        width: 380px; /* anchura epica */
+        height: 250px; /*altura */
+        top: 200px; /* (eje Y)n */
+        left: 550px; /*  (eje X)  */
+        border-radius: 100px;
+    }
+
+    .sobreinfo {
+        width: 500px; /* anchura epica */
+        height: 100px; /*altura */
+        top: 70px; /* (eje Y)n */
+        left: 470px; /*  (eje X)  */
+
+    }
+
+    .alfa {
+        width: 450px; /* anchura epica */
+        height: 300px; /*altura */
+        top: 130px; /* (eje Y) */
+        left: 250px; /*  (eje X)  */
+    }
+
+    .slide h2 {
+        position: absolute; /* Posiciona el h1 de forma absoluta dentro de la diapositiva */
+    }
+
+    .slide1 h2 {
+        top: 0px; 
+        left: 180px;
+        font-size: 50px; 
+    }
+
+    .slide2 h2 {
+        top: -10px; 
+        left: 350px; 
+    }
+
+    .slide2 h3 {
+        top: 250px; 
+        left: 10px;
+    }
+
+    .slide2 h4 {
+        top: 260px; 
+        left: 10px; 
+    }
+
+    .slide3 h2 {
+        top: -10px; 
+        left: 380px; 
+    }
+
+    .slide3 h3 {
+        top: 230px; 
+        left: 10px;
+    }
+
+    .slide3 h4 {
+        top: 240px; 
+        left: 10px; 
+    }
+
+    .slide3 h5 {
+        top: 230px; 
+        left: 10px; 
+    }
+
+    .slide4 h2 {
+        top: 400px; 
+        left: 200px; 
+    }
+
+    .slide4 h3 {
+        top: -10px; 
+        left: 300px;
+    }
+
+    .slide4 h4 {
+        font-size: 15px;
+        text-align: left;
+        top: 240px; 
+        left: 10px; 
+    }
+
+    .slide4 h5 {
+        text-align: left;
+        font-size: 15px;
+        top: 230px; 
+        left: 10px; 
+    }
+
+    .slide4 h6 {
+        text-align: left;
+        font-size: 15px;
+        top: 200px; 
+        left: 10px; 
+    }
+
+    .slide5 h2 {
+        top: 400px; 
+        left: 200px; 
+    }
+
+    .slide5 h3 {
+        top: -10px; 
+        left: 300px;
+    }
+
+    .slide5 h4 {
+        font-size: 15px;
+        text-align: left;
+        top: 240px; 
+        left: 10px; 
+    }
+
+    .slide5 h5 {
+        text-align: left;
+        font-size: 15px;
+        top: 230px; 
+        left: 10px; 
+    }
+
+    .slide5 h6 {
+        text-align: left;
+        font-size: 15px;
+        top: 200px; 
+        left: 10px; 
+    }
+
+    .slide6 h2 {
+        font-size: 50px;
+        top: 400px; 
+        left: 90px; 
+    }
+
+    .active {
+        display: block;
+    }
+
+    button {
+        padding: 40px 50px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 20px; 
+    }
+
+
+    #marcadeaua { /*SI,LIETRALEMNTE HICE UNA PAGINA CON HTML PARA UNA PRESENTACION,estaba aburrido*/
+        position: absolute;
+        top: 80px;
+        left: 530px;
+        transform: translateY(-50%);
+        background-color: #ff0000;
+        color: #fff;
+        border: 5px solid black;
+        border-radius: 100px;
+        font-size: 20px; 
+        text-align: center;
+    }
+
+    #prev-button {
+        position: absolute;
+        top: 80%;
+        left: 20px;
+        transform: translateY(-50%);
+    }
+
+    #next-button {
+        position: absolute;
+        top: 80%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+    @keyframes moveBackground {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: 100% 100%;
+        }
+    }
+    @keyframes fadeInOut {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+
+    h3 {
+        position: relative;
+
+    }
+
+    h4 {
+        position: relative;
+
+    }
+
+    h5 {
+        position: relative;
+
+    }
+
+    h6 {
+        position: relative;
+
+    }
+
+    h7 {
+        position: relative;
+
+    }
+
+    h8 {
+        position: relative;
+
+    }
+
+    h9 {
+        position: relative;
+
+    }
+</style>
+</head>
+<body>
+
+<div id="prev-button">
+    <button onclick="prevSlide()">Anterior</button>
+</div>
+
+<div id="next-button">
+    <button onclick="nextSlide()">Siguiente</button>
+</div>
+
+<div id="marcadeaua">
+    Hecho por Lautaro Cabrera Casafus
+</div>
+
+<div id="presentation-container">
+    <div class="slide slide1 active">
+        <h2>La Alfabetización Digital</h2>
+        <img class="alfa" src="ad.jpg" alt="Imagen 1">
+    </div>
+
+    <div class="slide slide2">
+        <h2>La Alfabetizacion digital</h2>
+        <p>se le llama a la habilidad/capacidad de abalizar,organizar,entender y evaluar información utilizando tecnologia digital.</p>
+        <img class="alfa2" src="alfa2.jpg" alt="Imagen 1">
+        <h3>Ejemplos</h3>
+        <h4>al buscar informacion en internet, entender sobre la seguridad en línea,utilizar herramientas de productividad ,etc.</h4>
+    </div>
+
+    <div class="slide slide3">
+        <h2>La Huella Digital</h2>
+        <p>Una huella digital es el rastro que dejamos al navegar por internet.</p>
+        <img class="huella" src="hdigit.jpg" alt="Imagen 1">
+        <h3>Ejemplos</h3>
+        <h4>dar click,al dar me gusta a una publicacion,al usar una aplicacion,etc.</h4>
+        <h5>otros ejemplos de huella digital pueden ser:nuestro historial de busqueda y/o de navegacion,mensajes de texto,etc.</h5>
+    </div>
+
+    <div class="slide slide4">
+        <h2>Infoxicación</h2>
+        <img class="infox" src="infoxicacion.png" alt="Imagen 1">
+        <img class="sobrein" src="sobre.jpg" alt="Imagen 1">
+
+        <h3>Sobreinformación</h3>
+        <h4>Se refiere al estado de saturación o sobrecarga de información</h4>
+
+    </div>
+
+    <div class="slide slide5">
+        <h2>Boomer</h2>
+        <img class="infox" src="boomer.png" alt="Imagen 1">
+        <img class="sobrein" src="fomo2.jpg" alt="Imagen 1">
+
+        <h3>FOMO</h3>
+        <h4>es un acrónimo de "baby boomer". Se refiere a la generación de personas </h4>
+
+    </div>
+
+    <div class="slide slide6">
+        <h2>Muchas Gracias por su atención</h2>
+        <img class="garcias" src="garcias.jpg" alt="Imagen 1">
+    </div>
+</div>
+
+<script>
+    let slideIndex = 0;
+    showSlide(slideIndex);
+
+    function prevSlide() {
+        showSlide(slideIndex -= 1);
+    }
+
+    function nextSlide() {
+        showSlide(slideIndex += 1);
+    }
+
+    function showSlide(n) {
+        let slides = document.getElementsByClassName("slide");
+        if (n >= slides.length) {
+            slideIndex = 0;
+        }
+        if (n < 0) {
+            slideIndex = slides.length - 1;
+        }
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+            slides[i].style.animation = ""; 
+        }
+        slides[slideIndex].classList.add("active");
+        slides[slideIndex].style.animation = "fadeIn 1s ease-in-out forwards"; 
+    }
+
+   
+    document.addEventListener("keydown", function(event) {
+        if (event.keyCode === 37) { // Flecha izquierda
+            prevSlide();
+        }
+        if (event.keyCode === 40) { // Flecha arriba p
+            prevSlide();
+        }
+        if (event.keyCode === 38) { // Flecha abajo
+            nextSlide();
+        }
+        if (event.keyCode === 39) { // Flecha derecha
+            nextSlide();
+        }
+    });
+
+</script>
+
+</body>
+</html>

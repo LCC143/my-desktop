@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="epicon.ico" type="image/x-icon">
+<title>La Alfabetizacion Digital</title>
+<style>
+    .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 9999;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/* Estilos para el botón de cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif; /*UNDERTALE REFERENCIA,perdon*/
+        overflow: hidden;
+        background: url('bg.png');
+        background-repeat: repeat;
+        animation: moveBackground 10s linear infinite;
+    }
+
+    #presentation-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.7);
+        padding: 20px;
+        border-radius: 100px;
+        border: 5px solid black; 
+        width: 950px; /*ancho*/
+        height: 500px; /*alto*/
+    }
+
+    .slide {
+        display: none;
+        position: relative;
+        text-align: center;
+        padding: 20px; 
+        animation: fadeInOut 1s ease-in-out forwards; 
+    }
+
+    .slide img {
+        position: absolute; 
+    }
+    .huella {
+        width: 300px; /* anchura epica */
+        height: 200px; /*altura */
+        top: 80px; /* (eje Y)n */
+        left: 330px; /*  (eje X)  */
+        text-align: center;
+    }
+
+    .garcias {
+        width: 600px; /* anchura epica */
+        height: 300px; /*altura */
+        top: 130px; /* (eje Y)n */
+        left: 180px; /*  (eje X)  */
+        text-align: center;
+        border-radius: 100px;
+    }
+
+    .alfa2 {
+        width: 400px; /* anchura epica */
+        height: 250px; /*altura */
+        top: 70px; /* (eje Y)n */
+        left: 285px; /*  (eje X)  */
+
+    }
+
+    .infox {
+        width: 400px; /* anchura epica */
+        height: 250px; /*altura */
+        top: 70px; /* (eje Y)n */
+        left: 5px; /*  (eje X)  */
+        border-radius: 100px;
+
+    }
+
+    .sobrein {
+        width: 380px; /* anchura epica */
+        height: 250px; /*altura */
+        top: 200px; /* (eje Y)n */
+        left: 300px; /*  (eje X)  */
+        border-radius: 100px;
+    }
+
+    .sobreinfo {
+        width: 380px; /* anchura epica */
+        height: 250px; /*altura */
+        top: 250px; /* (eje Y)n */
+        left: 300px; /*  (eje X)  */
+        border-radius: 100px;
+
+    }
+
+    .alfa {
+        width: 450px; /* anchura epica */
+        height: 300px; /*altura */
+        top: 130px; /* (eje Y) */
+        left: 250px; /*  (eje X)  */
+    }
+
+    .active {
+        display: block;
+    }
+
+    button {
+        padding: 40px 50px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        font-size: 20px; 
+    }
+
+
+    #marcadeaua { /*SI,LIETRALEMNTE HICE UNA PAGINA CON HTML PARA UNA PRESENTACION,estaba aburrido*/
+        position: absolute;
+        top: 80px;
+        left: 530px;
+        transform: translateY(-50%);
+        background-color: #ff0000;
+        color: #fff;
+        border: 5px solid black;
+        border-radius: 100px;
+        font-size: 20px; 
+        text-align: center;
+    }
+
+    #prev-button {
+        position: absolute;
+        top: 80%;
+        left: 20px;
+        transform: translateY(-50%);
+    }
+
+    #next-button {
+        position: absolute;
+        top: 80%;
+        right: 20px;
+        transform: translateY(-50%);
+    }
+
+    .slide1 h2 {
+        top: 0px; 
+        left: 180px;
+        font-size: 50px; 
+    }
+
+    .slide6 h2 {
+        font-size: 50px;
+        top: 400px; 
+        left: 90px; 
+    }
+
+    @keyframes moveBackground {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: 100% 100%;
+        }
+    }
+    @keyframes fadeInOut {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+
+    
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+</style>
+</head>
+<body>
+    <div id="popup1" class="popup">
+        AntiVirus instalado correctamente
+        <span class="close" onclick="closePopup('popup1')">X</span>
+    </div>
+
+
+
+<!-- Overlay para cubrir el fondo -->
+<div id="overlay" class="overlay" onclick="closeAllPopups()"></div>
+<div id="prev-button">
+    <button onclick="prevSlide()">Anterior</button>
+</div>
+
+<div id="next-button">
+    <button onclick="nextSlide()">Siguiente</button>
+</div>
+
+<div id="marcadeaua">
+    Hecho por Lautaro Cabrera Casafus
+</div>
+
+<div id="presentation-container">
+    <div class="slide slide1 active">
+        <h2>El delito informatico</h2>
+        <img class="alfa" src="sexoo.jpg" alt="Imagen 1">
+    </div>
+
+    <div class="slide slide2">
+        <h2>El delito informatico</h2>
+        <p>Delito informático, delito cibernético o ciberdelito es toda aquella acción antijurídica que se realiza en el entorno digital, espacio digital o de Internet.</p>
+        <h4>Tienen como objetivo causar daños, provocar pérdidas o impedir el uso de sistemas informáticos</h4>
+        <img class="sobrein" src="qmaloqsoy.png" alt="Imagen 1">
+    </div>
+
+    <div class="slide slide3">
+        <h2>Maneras en las que se comete el Delito informatico</h2>
+        <p>Este puede ocurrir durante conversaciones, links de sitios web, o descargas sospechosas</p>
+        <p>Por ejemplo:al instalar Malware o Ransomware, mediantes fraude en linea,etc.</p>
+        <h3>Se cometen mediante el uso de entornos digitales, redes, blockchain, computadoras, sistemas informáticos</h3>
+        <button onclick="startPopups()">Descargar aplicacion sospechosa</button>
+    </div>
+
+    <div class="slide slide4">
+        <h2>¿Como evitar?</h2>
+        <h4>El ciberdelitose puede evitar utilizando contraseñas seguras y unicas,actualizando el sistema cada cierto tiempo,utilizando antivirus,etc.</h4>
+        <button onclick="stopPopups(),openPopup('popup1')">Instalar AntiVirus</button>
+        <img class="sobreinfo" src="avast.jpeg" alt="Imagen 1">
+    </div>
+
+    <div class="slide slide5">
+        <h2>Navegacion Segura</h2>
+        <img class="sobrein" src="waooo.jpg" alt="Imagen 1">
+
+        <h3>La navegación segura se refiere a la práctica de utilizar Internet de manera que minimice los riesgos de exponerse a amenazas cibernéticas y proteja la privacidad y seguridad del usuario. </h3>
+
+
+    </div>
+
+    <div class="slide slide6">
+        <h2>Muchas Gracias por su atención</h2>
+        <img class="garcias" src="arar.jpg" alt="Imagen 1">
+    </div>
+</div>
+
+<script>
+    let slideIndex = 0;
+    let isPopupAllowed = false; // Variable para controlar si se deben mostrar imágenes emergentes
+
+    showSlide(slideIndex);
+
+    function prevSlide() {
+        showSlide(slideIndex -= 1);
+    }
+
+    function nextSlide() {
+        showSlide(slideIndex += 1);
+    }
+
+    function showSlide(n) {
+        let slides = document.getElementsByClassName("slide");
+        if (n >= slides.length) {
+            slideIndex = 0;
+        }
+        if (n < 0) {
+            slideIndex = slides.length - 1;
+        }
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active");
+            slides[i].style.animation = ""; 
+        }
+        slides[slideIndex].classList.add("active");
+        slides[slideIndex].style.animation = "fadeIn 1s ease-in-out forwards"; 
+    }
+
+    document.addEventListener("keydown", function(event) {
+        if (event.keyCode === 37) { // Flecha izquierda
+            prevSlide();
+        }
+        if (event.keyCode === 40) { // Flecha arriba p
+            prevSlide();
+        }
+        if (event.keyCode === 38) { // Flecha abajo
+            nextSlide();
+        }
+        if (event.keyCode === 39) { // Flecha derecha
+            nextSlide();
+        }
+    });
+
+function openPopup(id) {  
+    document.getElementById(id).style.display = "block";  
+    document.getElementById("overlay").style.display = "block";
+}
+
+function closePopup(id) {
+    document.getElementById(id).style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+}
+
+function closeAllPopups() {
+    var popups = document.querySelectorAll('.popup');
+    for (var i = 0; i < popups.length; i++) {
+        popups[i].style.display = "none";
+    }
+    document.getElementById("overlay").style.display = "none";
+}
+
+function startPopups() {
+    isPopupAllowed = true;
+    generateRandomPopups();
+}
+
+function stopPopups() {
+    isPopupAllowed = false;
+    closeAllPopups();
+} 
+
+// Función para crear una imagen emergente aleatoria
+function createPopup() {
+    // Crear un nuevo elemento imagen
+    var imagenes = ["ventana-_1_.png", "ventana-_2_.png", "booo.png", "poya.png", "uhh.png", "yey.png", "e.png", "lawawa.png", "ar.png", "booo.png"];
+
+    // Selecciona aleatoriamente un nombre de imagen del array
+    var indiceAleatorio = Math.floor(Math.random() * imagenes.length);
+    var imagenSeleccionada = imagenes[indiceAleatorio];
+
+    // Crea un elemento img y establece sus atributos
+    var popup = document.createElement("img");
+    popup.setAttribute("src", imagenSeleccionada);
+    popup.setAttribute("class", "popup");
+    popup.style.position = "absolute";
+    popup.style.width = "200px"; // Establece el ancho de la imagen
+    popup.style.height = "200px"; // Establece la altura de la imagen
+
+    // Agrega el elemento img al documento
+    document.body.appendChild(popup);
+
+    // Calcular posiciones aleatorias en la pantalla
+    var left = Math.floor(Math.random() * window.innerWidth);
+    var top = Math.floor(Math.random() * window.innerHeight);
+    popup.style.left = left + "px";
+    popup.style.top = top + "px";
+
+    // Agregar botón de cerrar
+    var closeBtn = document.createElement("span");
+    closeBtn.setAttribute("class", "close");
+    closeBtn.innerHTML = "X";
+    closeBtn.onclick = function() {
+        document.body.removeChild(popup);
+    };
+    popup.appendChild(closeBtn);
+
+    // Agregar la imagen emergente al cuerpo del documento
+    document.body.appendChild(popup);
+
+    // Mostrar la imagen emergente
+    popup.style.display = "block";
+
+    // Ocultar la imagen emergente después de un tiempo
+    setTimeout(function() {
+        document.body.removeChild(popup);
+    }, 5000); // Cambiar 5000 por el tiempo en milisegundos que deseas que la imagen permanezca visible
+}
+
+// Función para generar imágenes emergentes aleatorias
+function generateRandomPopups() {
+    if (isPopupAllowed) {
+        createPopup();
+        // Llamar a la función cada 5 segundos
+        setTimeout(generateRandomPopups, 5000);
+    }
+}
+
+</script>
+
+</body>
+</html>
